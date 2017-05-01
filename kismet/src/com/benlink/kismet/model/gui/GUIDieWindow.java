@@ -11,11 +11,11 @@ public class GUIDieWindow extends JFrame {
     private static final long serialVersionUID = 1L;
 
     public GUIDieWindow() {
-        this.setSize(300,300);;
-        this.setTitle("Roll Dice GUI");;
+        this.setSize(800,400);
+        this.setTitle("Roll Dice GUI");
         Container contentPane = this.getContentPane();
         
-        contentPane.setBackground(Color.RED);
+        contentPane.setBackground(Color.GRAY);
         contentPane.setLayout(new FlowLayout());
         contentPane.add(new GUIDiePanel());
     }

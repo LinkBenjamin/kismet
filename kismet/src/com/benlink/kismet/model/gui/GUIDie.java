@@ -66,7 +66,7 @@ public class GUIDie extends JComponent {
                 this.drawPip(g, 3*w/4, h/4);
                 this.drawPip(g, w/4, 3*h/4);
                 this.drawPip(g, 3*w/4, h/2);
-                this.drawPip(g, w/4, 3*h/2);
+                this.drawPip(g, w/4, h/2);
                 break;                
         }
     }

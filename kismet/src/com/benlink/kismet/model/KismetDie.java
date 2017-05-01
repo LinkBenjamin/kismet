@@ -13,7 +13,6 @@ public class KismetDie extends Die {
         try {
             setColor(identifyColor(getCurrentValue()));
         } catch (ImpossibleDieValueException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -46,6 +45,19 @@ public class KismetDie extends Die {
                 throw new ImpossibleDieValueException("Dunno how you managed to roll " + value + " on a d6.");
         }
         return returnValue;
+    }
+    
+    @Override
+    public int roll() {
+    	int newValue = super.roll();
+    	
+    	try {
+            setColor(identifyColor(getCurrentValue()));
+        } catch (ImpossibleDieValueException e) {
+            e.printStackTrace();
+        }
+    	
+    	return newValue;
     }
     
 }
