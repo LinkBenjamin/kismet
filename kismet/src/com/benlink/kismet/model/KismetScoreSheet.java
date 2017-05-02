@@ -31,62 +31,92 @@ public class KismetScoreSheet {
 	}
 
 	public int getAces() {
+		if(aces < 0) return 0;
+		
 		return aces;
 	}
 
 	public int getDeuces() {
+		if(deuces < 0) return 0;
+		
 		return deuces;
 	}
 
 	public int getTreys() {
+		if(treys < 0) return 0;
+		
 		return treys;
 	}
 
 	public int getFours() {
+		if(fours < 0) return 0;
+		
 		return fours;
 	}
 
 	public int getFives() {
+		if(fives < 0) return 0;
+		
 		return fives;
 	}
 
 	public int getSixes() {
+		if(sixes < 0) return 0;
+		
 		return sixes;
 	}
 
 	public int getTwoPair() {
+		if(twoPair < 0) return 0;
+		
 		return twoPair;
 	}
 
 	public int getThreeOfAKind() {
+		if(threeOfAKind < 0) return 0;
+		
 		return threeOfAKind;
 	}
 
 	public int getStraight() {
+		if(straight < 0) return 0;
+		
 		return straight;
 	}
 
 	public int getFlush() {
+		if(flush < 0) return 0;
+		
 		return flush;
 	}
 
 	public int getFullHouse() {
+		if(fullHouse < 0) return 0;
+		
 		return fullHouse;
 	}
 
 	public int getFullHouseSameColor() {
+		if(fullHouseSameColor < 0) return 0;
+		
 		return fullHouseSameColor;
 	}
 
 	public int getFourOfAKind() {
+		if(fourOfAKind < 0) return 0;
+		
 		return fourOfAKind;
 	}
 
 	public int getYarborough() {
+		if(yarborough < 0) return 0;
+		
 		return yarborough;
 	}
 
 	public int getKismet() {
+		if(kismet < 0) return 0;
+		
 		return kismet;
 	}
 
@@ -127,6 +157,7 @@ public class KismetScoreSheet {
 	}
 
 	private void setStraight(int straight) {
+		System.out.println(straight);
 		this.straight = straight;
 	}
 
@@ -192,7 +223,7 @@ public class KismetScoreSheet {
 	public void score(ScoreType type, int value) throws TypeAlreadyPlayedException{
 		switch(type){
 		case ACES:
-			if(getAces() < 0){
+			if(aces < 0){
 				setAces(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played aces");
@@ -200,7 +231,7 @@ public class KismetScoreSheet {
 				
 			break;
 		case DEUCES:
-			if(getDeuces() < 0){
+			if(deuces < 0){
 				setDeuces(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played deuces");
@@ -208,91 +239,91 @@ public class KismetScoreSheet {
 			
 			break;
 		case FIVES:
-			if(getFives() < 0){
+			if(fives < 0){
 				setFives(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played fives");
 			}
 			break;
 		case FLUSH:
-			if(getFlush() < 0){
+			if(flush < 0){
 			setFlush(value);
 		} else {
 			throw new TypeAlreadyPlayedException("You've already played flush");
 		}
 			break;
 		case FOUROFAKIND:
-			if(getFourOfAKind() < 0){
+			if(fourOfAKind < 0){
 				setFourOfAKind(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played 4 of a kind");
 			}
 			break;
 		case FOURS:
-			if(getFours() < 0){
+			if(fours < 0){
 				setFours(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played fours");
 			}
 			break;
 		case FULLHOUSE:
-			if(getFullHouse() < 0){
+			if(fullHouse < 0){
 				setFullHouse(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played fullhouse");
 			}
 			break;
 		case FULLHOUSESAMECOLOR:
-			if(getFullHouseSameColor() < 0){
+			if(fullHouseSameColor < 0){
 				setFullHouseSameColor(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played fullhouse-same color");
 			}
 			break;
 		case KISMET:
-			if(getKismet() < 0){
+			if(kismet < 0){
 				setKismet(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played kismet");
 			}
 			break;
 		case SIXES:
-			if(getSixes() < 0){
+			if(sixes < 0){
 				setSixes(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played sixes");
 			}
 			break;
 		case STRAIGHT:
-			if(getStraight() < 0){
+			if(straight < 0){
 				setStraight(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played a straight");
 			}
 			break;
 		case THREEOFAKIND:
-			if(getThreeOfAKind() < 0){
+			if(threeOfAKind < 0){
 				setThreeOfAKind(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played 3 of a kind");
 			}
 			break;
 		case TREYS:
-			if(getTreys() < 0){
+			if(treys < 0){
 				setTreys(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played treys");
 			}
 			break;
 		case TWOPAIR:
-			if(getTwoPair() < 0){
+			if(twoPair < 0){
 				setTwoPair(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played two pair");
 			}
 			break;
 		case YARBOROUGH:
-			if(getYarborough() < 0){
+			if(yarborough < 0){
 				setYarborough(value);
 			} else {
 				throw new TypeAlreadyPlayedException("You've already played yarborough");

@@ -1,5 +1,9 @@
 package com.benlink.kismet.game;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.benlink.kismet.enums.ScoreType;
 import com.benlink.kismet.exceptions.TypeAlreadyPlayedException;
 import com.benlink.kismet.model.KismetDie;
@@ -19,6 +23,10 @@ public class KismetGameRunner {
 		scoreSheet = new KismetScoreSheet();
 	}
 	
+	public KismetScoreSheet getScoreSheet() {
+		return scoreSheet;
+	}
+
 	private void setGameOver(boolean over){
 		gameOver = over;
 	}
@@ -39,7 +47,7 @@ public class KismetGameRunner {
 		return turnNumber;
 	}
 	
-	public void score(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5, ScoreType scoreType){
+	public void score(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5, ScoreType scoreType) throws TypeAlreadyPlayedException{
 		
 		int scoreValue = 0;
 		
@@ -74,7 +82,8 @@ public class KismetGameRunner {
 			}
 			break;
 		case STRAIGHT:
-			// TODO: Straight
+			if(evalStraight(die1, die2, die3, die4, die5))
+				scoreValue = 30;			
 			break;
 		case FLUSH:
 			if(countDifferentColors(die1, die2, die3, die4, die5) == 1){
@@ -132,46 +141,81 @@ public class KismetGameRunner {
 			break;
 		}
 		
-		try {
-			scoreSheet.score(scoreType, scoreValue);
+		System.out.println("KismetGameRunner 144: " + scoreType + " " + scoreValue);
+		scoreSheet.score(scoreType, scoreValue);
 			
-			if (getTurnNumber() >= 15){
-				setGameOver(true);
-			}
-			
-			incrementTurnNumber();
-		} catch (TypeAlreadyPlayedException e) {
-			// TODO what do when failed scoring attempt?
-			e.printStackTrace();
+		if (getTurnNumber() >= 15){
+			setGameOver(true);
 		}
 		
+		incrementTurnNumber();		
+	}
 
+	private boolean evalStraight(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
+		List<KismetDie> dice = new ArrayList<KismetDie>();
+		dice.add(die1);
+		dice.add(die2);
+		dice.add(die3);
+		dice.add(die4);
+		dice.add(die5);
 		
+		Collections.sort(dice);
+		
+		boolean isStraight = true;
+		KismetDie previous = null;
+		for(KismetDie current: dice){
+			if(previous != null){
+				if(current.getCurrentValue() != previous.getCurrentValue() + 1){
+					isStraight = false;
+					break;
+				}
+			}
+		}
+		
+		return isStraight;
 	}
 
 	private int ofAKind(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
-		int[] ofAKindArray = new int[7];
+		List<KismetDie> dice = new ArrayList<KismetDie>();
+		dice.add(die1);
+		dice.add(die2);
+		dice.add(die3);
+		dice.add(die4);
+		dice.add(die5);
 		
-		ofAKindArray[die1.getCurrentValue()]++;
-		ofAKindArray[die2.getCurrentValue()]++;
-		ofAKindArray[die3.getCurrentValue()]++;
-		ofAKindArray[die4.getCurrentValue()]++;
-		ofAKindArray[die5.getCurrentValue()]++;
+		Collections.sort(dice);
 		
-		int returnValue = 1;
+		int largestOfAKind = 0;
+		int ofAKind = 0;
+		int value = 0;
 		
-		for(int i=1; i<=6; i++){
-			if(ofAKindArray[i] > returnValue){
-				returnValue = i;
+		for(KismetDie d: dice){
+			if(value == 0){
+				ofAKind = 1;
+				value = d.getCurrentValue();
+			} else {
+				if(d.getCurrentValue() == value){
+					ofAKind++;
+				} else {
+					if(ofAKind > largestOfAKind){
+						largestOfAKind = ofAKind;
+					}
+					ofAKind = 1;
+					value = d.getCurrentValue();
+				}
 			}
 		}
 		
-		return 0;
+		if(ofAKind > largestOfAKind){
+			largestOfAKind = ofAKind;
+		}
+		
+		return largestOfAKind;
 	}
 
 	private boolean hasFullHouse(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		if(ofAKind(die1, die2, die3, die4, die5) == 3 &&
-	       countPairs(die1, die2, die3, die4, die5) == 2){
+	       countPairs(die1, die2, die3, die4, die5) > 1){
 			return true;
 		}
 		
@@ -179,8 +223,24 @@ public class KismetGameRunner {
 	}
 
 	private int countPairs(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
-		// TODO Count Pairs
-		return 0;
+		List<Integer> histogram = new ArrayList<Integer>();
+		
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 1));
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 2));
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 3));
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 4));
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 5));
+		histogram.add(countDiceWithValue(die1, die2, die3, die4, die5, 6));
+
+		int returnValue = 0;
+		
+		for(int x: histogram){
+			returnValue += x;
+		}
+		
+		System.out.println("countPairs = " + returnValue);
+		
+		return returnValue;
 	}
 
 	private int countDifferentColors(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {

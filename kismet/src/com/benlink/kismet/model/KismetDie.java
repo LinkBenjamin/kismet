@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import com.benlink.kismet.exceptions.ImpossibleDieValueException;
 
-public class KismetDie extends Die {
+public class KismetDie extends Die implements Comparable<KismetDie> {
     public static final int SIDES = 6;
     private Color color;
     
@@ -59,5 +59,19 @@ public class KismetDie extends Die {
     	
     	return newValue;
     }
+
+	@Override
+	public int compareTo(KismetDie o) {
+		final int BEFORE = -1;
+	    final int EQUAL = 0;
+	    final int AFTER = 1;
+	    
+	    if(this == o) return EQUAL;
+	    
+	    if(this.getCurrentValue() < o.getCurrentValue()) return BEFORE;
+	    if(this.getCurrentValue() > o.getCurrentValue()) return AFTER;
+	    
+	    return EQUAL;
+	}
     
 }
