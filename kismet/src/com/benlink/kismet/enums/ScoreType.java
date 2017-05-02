@@ -1,5 +1,11 @@
 package com.benlink.kismet.enums;
 
+/**
+ * @author Ben
+ * 
+ * All the ways you can score.
+ *
+ */
 public enum ScoreType {
 	ACES,
 	DEUCES,

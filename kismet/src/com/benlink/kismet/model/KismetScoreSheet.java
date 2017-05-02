@@ -3,6 +3,12 @@ package com.benlink.kismet.model;
 import com.benlink.kismet.enums.ScoreType;
 import com.benlink.kismet.exceptions.TypeAlreadyPlayedException;
 
+/**
+ * @author Ben
+ * 
+ * Your score sheet.
+ *
+ */
 public class KismetScoreSheet {
 	private int aces;
 	private int deuces;
@@ -22,6 +28,9 @@ public class KismetScoreSheet {
 	
 	private int bonus;
 	
+	/**
+	 * Constructors gonna construct
+	 */
 	public KismetScoreSheet(){
 		aces = deuces = treys = 
 		fours = fives = sixes = 
@@ -30,165 +39,264 @@ public class KismetScoreSheet {
 		fourOfAKind = yarborough = kismet = -1;
 	}
 
+	/**
+	 * @return aces
+	 */
 	public int getAces() {
 		if(aces < 0) return 0;
 		
 		return aces;
 	}
 
+	/**
+	 * @return deuces
+	 */
 	public int getDeuces() {
 		if(deuces < 0) return 0;
 		
 		return deuces;
 	}
 
+	/**
+	 * @return treys
+	 */
 	public int getTreys() {
 		if(treys < 0) return 0;
 		
 		return treys;
 	}
 
+	/**
+	 * @return fours
+	 */
 	public int getFours() {
 		if(fours < 0) return 0;
 		
 		return fours;
 	}
 
+	/**
+	 * @return fives
+	 */
 	public int getFives() {
 		if(fives < 0) return 0;
 		
 		return fives;
 	}
 
+	/**
+	 * @return sixes
+	 */
 	public int getSixes() {
 		if(sixes < 0) return 0;
 		
 		return sixes;
 	}
 
+	/**
+	 * @return twoPair
+	 */
 	public int getTwoPair() {
 		if(twoPair < 0) return 0;
 		
 		return twoPair;
 	}
 
+	/**
+	 * @return 3oaK
+	 */
 	public int getThreeOfAKind() {
 		if(threeOfAKind < 0) return 0;
 		
 		return threeOfAKind;
 	}
 
+	/**
+	 * @return straight
+	 */
 	public int getStraight() {
 		if(straight < 0) return 0;
 		
 		return straight;
 	}
 
+	/**
+	 * @return flush
+	 */
 	public int getFlush() {
 		if(flush < 0) return 0;
 		
 		return flush;
 	}
 
+	/**
+	 * @return fullhouse
+	 */
 	public int getFullHouse() {
 		if(fullHouse < 0) return 0;
 		
 		return fullHouse;
 	}
 
+	/**
+	 * @return fhsc
+	 */
 	public int getFullHouseSameColor() {
 		if(fullHouseSameColor < 0) return 0;
 		
 		return fullHouseSameColor;
 	}
 
+	/**
+	 * @return 4oaK
+	 */
 	public int getFourOfAKind() {
 		if(fourOfAKind < 0) return 0;
 		
 		return fourOfAKind;
 	}
 
+	/**
+	 * @return yarborough
+	 */
 	public int getYarborough() {
 		if(yarborough < 0) return 0;
 		
 		return yarborough;
 	}
 
+	/**
+	 * @return kismet
+	 */
 	public int getKismet() {
 		if(kismet < 0) return 0;
 		
 		return kismet;
 	}
 
+	/**
+	 * @return the bonus
+	 */
 	public int getBonus() {
 		return bonus;
 	}
 
+	/**
+	 * @param aces
+	 */
 	private void setAces(int aces) {
 		this.aces = aces;
 	}
 
+	/**
+	 * @param deuces
+	 */
 	private void setDeuces(int deuces) {
 		this.deuces = deuces;
 	}
 
+	/**
+	 * @param treys
+	 */
 	private void setTreys(int treys) {
 		this.treys = treys;
 	}
 
+	/**
+	 * @param fours
+	 */
 	private void setFours(int fours) {
 		this.fours = fours;
 	}
 
+	/**
+	 * @param fives
+	 */
 	private void setFives(int fives) {
 		this.fives = fives;
 	}
 
+	/**
+	 * @param sixes
+	 */
 	private void setSixes(int sixes) {
 		this.sixes = sixes;
 	}
 
+	/**
+	 * @param twoPair
+	 */
 	private void setTwoPair(int twoPair) {
 		this.twoPair = twoPair;
 	}
 
+	/**
+	 * @param threeOfAKind
+	 */
 	private void setThreeOfAKind(int threeOfAKind) {
 		this.threeOfAKind = threeOfAKind;
 	}
 
+	/**
+	 * @param straight
+	 */
 	private void setStraight(int straight) {
 		System.out.println(straight);
 		this.straight = straight;
 	}
 
+	/**
+	 * @param flush
+	 */
 	private void setFlush(int flush) {
 		this.flush = flush;
 	}
 
+	/**
+	 * @param fullHouse
+	 */
 	private void setFullHouse(int fullHouse) {
 		this.fullHouse = fullHouse;
 	}
 
+	/**
+	 * @param fullHouseSameColor
+	 */
 	private void setFullHouseSameColor(int fullHouseSameColor) {
 		this.fullHouseSameColor = fullHouseSameColor;
 	}
 
+	/**
+	 * @param fourOfAKind
+	 */
 	private void setFourOfAKind(int fourOfAKind) {
 		this.fourOfAKind = fourOfAKind;
 	}
 
+	/**
+	 * @param yarborough
+	 */
 	private void setYarborough(int yarborough) {
 		this.yarborough = yarborough;
 	}
 
+	/**
+	 * @param kismet
+	 */
 	private void setKismet(int kismet) {
 		this.kismet = kismet;
 	}
 
+	/**
+	 * @param bonus
+	 */
 	private void setBonus(int bonus) {
 		this.bonus = bonus;
 	}
 	
+	/**
+	 * @return the total score
+	 */
 	public int calculateScore(){
 		int firstSection = getAces() + 
 						   getDeuces() + 
@@ -220,6 +328,11 @@ public class KismetScoreSheet {
 		return firstSection + getBonus() + secondSection;
 	}
 	
+	/**
+	 * @param type What kind of score.
+	 * @param value The value.
+	 * @throws TypeAlreadyPlayedException if you've already played this one.
+	 */
 	public void score(ScoreType type, int value) throws TypeAlreadyPlayedException{
 		switch(type){
 		case ACES:

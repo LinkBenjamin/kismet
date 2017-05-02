@@ -3,7 +3,7 @@ package com.benlink.kismet.exceptions;
 public class TypeAlreadyPlayedException extends Exception {
 
 	/**
-	 * 
+	 * Exceptions gonna except.
 	 */
 	private static final long serialVersionUID = 1L;
 	

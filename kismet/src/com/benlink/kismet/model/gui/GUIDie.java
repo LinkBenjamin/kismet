@@ -8,6 +8,12 @@ import javax.swing.JComponent;
 
 import com.benlink.kismet.model.KismetDie;
 
+/**
+ * @author Ben
+ * 
+ * It's an ugly pic of a die.
+ *
+ */
 public class GUIDie extends JComponent {
 
     private static final long serialVersionUID = 1L;
@@ -15,23 +21,38 @@ public class GUIDie extends JComponent {
     private KismetDie die;
     private static final int PIP_DIAMETER = 18;
     
+    /**
+     * constructors gonna construct
+     */
     public GUIDie() {
         this.setPreferredSize(new Dimension(120, 120));
         this.setDie(new KismetDie());
     }
 
+    /**
+     * @return get the KismetDie object from inside
+     */
     public KismetDie getDie() {
         return die;
     }
 
+    /**
+     * @param singleDie
+     */
     private void setDie(KismetDie singleDie) {
         this.die = singleDie;
     }
     
+    /**
+     * @return they see me rollin'
+     */
     public int roll(){
         return this.die.roll();
     }
     
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     public void paintComponent(Graphics g) {
         int w = this.getWidth();
         int h = this.getHeight();
@@ -71,6 +92,11 @@ public class GUIDie extends JComponent {
         }
     }
     
+    /**
+     * @param g graphics
+     * @param x where to start x
+     * @param y where to start y
+     */
     private void drawPip(Graphics g, int x, int y){
         g.fillOval(x - PIP_DIAMETER, y - PIP_DIAMETER, PIP_DIAMETER, PIP_DIAMETER);
     }

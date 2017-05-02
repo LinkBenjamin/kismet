@@ -17,6 +17,12 @@ import com.benlink.kismet.exceptions.TypeAlreadyPlayedException;
 import com.benlink.kismet.game.KismetGameRunner;
 import com.benlink.kismet.model.KismetScoreSheet;
 
+/**
+ * @author ben
+ *
+ * The panel of dice and their entourage
+ *
+ */
 public class GUIDiePanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +49,11 @@ public class GUIDiePanel extends JPanel implements ActionListener {
     private int rollNumber;
     private KismetGameRunner game;
     
+    /**
+     * @param myGame
+     * 
+     * Pass in the game object.  Build a panel to play it in.
+     */
     public GUIDiePanel(KismetGameRunner myGame) {
     	game = myGame;        
         rollNumber = 1;
@@ -172,6 +183,11 @@ public class GUIDiePanel extends JPanel implements ActionListener {
         
     }
 
+    /* (non-Javadoc)
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     * 
+     * When stuff happens...
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
     	if(e.getSource() == rollButton){
@@ -229,6 +245,10 @@ public class GUIDiePanel extends JPanel implements ActionListener {
     	
     }
 
+	/**
+	 * @param scoreSheet
+	 * @return the score sheet.  HTML tags make it display nicely in a JLabel.
+	 */
 	private String getScoreCardOutputString(KismetScoreSheet scoreSheet) {
 		String returnValue = "<html>(1s = " + scoreSheet.getAces() + ") <br/>";
 		returnValue += "(2s = " + scoreSheet.getDeuces() + ") <br/>";

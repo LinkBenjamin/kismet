@@ -9,12 +9,21 @@ import com.benlink.kismet.exceptions.TypeAlreadyPlayedException;
 import com.benlink.kismet.model.KismetDie;
 import com.benlink.kismet.model.KismetScoreSheet;
 
+/**
+ * @author Ben
+ * 
+ * This is how you play the game.
+ *
+ */
 public class KismetGameRunner {
 	private int turnNumber;
 	private boolean gameOver;
 	
 	private KismetScoreSheet scoreSheet;
 	
+	/**
+	 * Default Constructor sets the game up.
+	 */
 	public KismetGameRunner(){
 		setGameOver(false);
 		
@@ -23,30 +32,57 @@ public class KismetGameRunner {
 		scoreSheet = new KismetScoreSheet();
 	}
 	
+	/**
+	 * @return score sheet
+	 */
 	public KismetScoreSheet getScoreSheet() {
 		return scoreSheet;
 	}
 
+	/**
+	 * @param over whether the game is over.
+	 */
 	private void setGameOver(boolean over){
 		gameOver = over;
 	}
 	
+	/**
+	 * Well, it should be obvious what that does.
+	 */
 	private void incrementTurnNumber(){
 		setTurnNumber(getTurnNumber() + 1);
 	}
 	
+	/**
+	 * @param turn what turn it is
+	 */
 	private void setTurnNumber(int turn){
 		turnNumber = turn;
 	}
 	
+	/**
+	 * @return well?  Is it?
+	 */
 	public boolean isGameOver(){
 		return gameOver;
 	}
 	
+	/**
+	 * @return the turn number
+	 */
 	public int getTurnNumber(){
 		return turnNumber;
 	}
 	
+	/**
+	 * @param die1 the first die
+	 * @param die2 the second die
+	 * @param die3 the third die
+	 * @param die4 the fourth die
+	 * @param die5 the fifth die
+	 * @param scoreType how you intend for it to be scored
+	 * @throws TypeAlreadyPlayedException If you've already played in that space.
+	 */
 	public void score(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5, ScoreType scoreType) throws TypeAlreadyPlayedException{
 		
 		int scoreValue = 0;
@@ -151,6 +187,14 @@ public class KismetGameRunner {
 		incrementTurnNumber();		
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @return is it a straight?
+	 */
 	private boolean evalStraight(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		List<KismetDie> dice = new ArrayList<KismetDie>();
 		dice.add(die1);
@@ -175,6 +219,14 @@ public class KismetGameRunner {
 		return isStraight;
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @return the most of-a-kind in the current roll
+	 */
 	private int ofAKind(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		List<KismetDie> dice = new ArrayList<KismetDie>();
 		dice.add(die1);
@@ -213,6 +265,14 @@ public class KismetGameRunner {
 		return largestOfAKind;
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @return whatever happened to predictability?
+	 */
 	private boolean hasFullHouse(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		if(ofAKind(die1, die2, die3, die4, die5) == 3 &&
 	       countPairs(die1, die2, die3, die4, die5) > 1){
@@ -222,6 +282,14 @@ public class KismetGameRunner {
 		return false;
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @return how many pairs do you have?
+	 */
 	private int countPairs(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		List<Integer> histogram = new ArrayList<Integer>();
 		
@@ -235,7 +303,7 @@ public class KismetGameRunner {
 		int returnValue = 0;
 		
 		for(int x: histogram){
-			returnValue += x;
+		    returnValue += (x / 2);
 		}
 		
 		System.out.println("countPairs = " + returnValue);
@@ -243,6 +311,14 @@ public class KismetGameRunner {
 		return returnValue;
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @return how many different colors?
+	 */
 	private int countDifferentColors(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5) {
 		int colors = 1;
 		
@@ -279,6 +355,15 @@ public class KismetGameRunner {
 		return colors;		
 	}
 
+	/**
+	 * @param die1
+	 * @param die2
+	 * @param die3
+	 * @param die4
+	 * @param die5
+	 * @param magicNumber the number you're looking for
+	 * @return how many dice have that number?
+	 */
 	private int countDiceWithValue(KismetDie die1, KismetDie die2, KismetDie die3, KismetDie die4, KismetDie die5,
 			int magicNumber) {
 		int returnValue = 0;

@@ -8,10 +8,20 @@ import javax.swing.JFrame;
 
 import com.benlink.kismet.game.KismetGameRunner;
 
+/**
+ * @author Ben
+ *
+ * The eye is the Window to the Soul.
+ *
+ */
 public class GUIDieWindow extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * French: Fenestre
+     * Spanish: Ventana
+     */
     public GUIDieWindow() {
     	KismetGameRunner game = new KismetGameRunner();
     	
